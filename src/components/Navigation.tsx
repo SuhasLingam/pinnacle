@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { MobileMenu } from './MobileMenu';
 
 const navItems = ['HOME', 'ABOUT', 'SCHEDULE', 'SPONSORS', 'PARTNERS'];
 
@@ -12,6 +13,8 @@ export const Navigation = () => (
       className="cursor-pointer"
       priority
     />
+    
+    {/* Desktop Menu */}
     <div className="hidden md:flex gap-8">
       {navItems.map((item) => (
         <a 
@@ -23,5 +26,8 @@ export const Navigation = () => (
         </a>
       ))}
     </div>
+
+    {/* Mobile Menu */}
+    <MobileMenu items={navItems} />
   </nav>
 ); 

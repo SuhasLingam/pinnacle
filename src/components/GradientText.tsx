@@ -13,17 +13,17 @@ export const GradientText = ({ text, size, className = "", fontClass }: Gradient
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     display: 'inline-block',
-    transform: 'perspective(500px) rotateX(10deg)',
+    transform: 'perspective(1000px) rotateX(20deg)',
   };
 
   const sizeStyles = {
     large: {
       ...baseStyle,
-      filter: 'drop-shadow(8px 8px 2px #000000)',
+      filter: 'drop-shadow(0 10px 0px #000)',
     },
     small: {
       ...baseStyle,
-      filter: 'drop-shadow(6px 6px 2px #000000)',
+      filter: 'drop-shadow(0 5px 0px #000)',
     },
   };
 
@@ -33,7 +33,7 @@ export const GradientText = ({ text, size, className = "", fontClass }: Gradient
         <span
           key={index}
           className={`
-            ${size === 'large' ? 'text-4xl md:text-6xl lg:text-8xl' : 'text-xl md:text-2xl lg:text-4xl'}
+            ${size === 'large' ? 'text-5xl md:text-7xl lg:text-8xl' : 'text-2xl md:text-3xl lg:text-4xl'}
             tracking-wider relative inline-block
           `}
           style={sizeStyles[size]}

@@ -1,5 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Space_Grotesk } from 'next/font/google'
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'TIC - PINNACLE',
@@ -13,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={spaceGrotesk.className}>{children}</body>
     </html>
   )
 }

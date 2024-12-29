@@ -34,7 +34,7 @@ export default function Home() {
         >
           {/* Remove the oval shape div and simplify the title */}
           <GradientText 
-            text="Pinnacle Hackathon 2024" 
+            text="Pinnacle Hackathon 2025" 
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight"
           />
 

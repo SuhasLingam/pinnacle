@@ -45,7 +45,7 @@ export const Sponsors = () => {
           </p>
         </div>
 
-        {sponsorTiers.map((tier, tierIndex) => (
+        {sponsorTiers.map((tier) => (
           <div key={tier.tier} className="mb-16 last:mb-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

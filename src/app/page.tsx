@@ -7,8 +7,7 @@ import { Timeline } from '@/components/Timeline';
 import { Prizes } from '@/components/Prizes';
 import { Sponsors } from '@/components/Sponsors';
 import { Register } from '@/components/Register';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ScrollPattern } from '@/components/ScrollPattern';
+import { motion, useScroll } from 'framer-motion';
 
 export default function Home() {
   const { scrollYProgress } = useScroll();

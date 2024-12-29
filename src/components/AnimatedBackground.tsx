@@ -8,10 +8,11 @@ export const AnimatedBackground = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const container = containerRef.current;
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new THREE.WebGLRenderer({ 
-      antialias: false, // Disable antialiasing for better performance
+      antialias: false,
       powerPreference: 'high-performance'
     });
     const clock = new THREE.Clock();
@@ -24,7 +25,7 @@ export const AnimatedBackground = () => {
         u_time: { value: 0 },
         u_resolution: { value: new THREE.Vector2() },
         u_mouse: { value: new THREE.Vector2() },
-        u_scale: { value: isMobile ? 0.5 : 1.0 }, // Scale down effects on mobile
+        u_scale: { value: isMobile ? 0.5 : 1.0 },
         colorA: { value: new THREE.Vector3(0.1, 0.3, 0.9) },
         colorB: { value: new THREE.Vector3(0.8, 0.2, 0.8) },
         colorC: { value: new THREE.Vector3(0.3, 0.1, 0.6) },
@@ -88,31 +89,24 @@ export const AnimatedBackground = () => {
           vec2 uv = gl_FragCoord.xy / u_resolution.xy;
           uv.x *= u_resolution.x / u_resolution.y;
           
-          // Scale down the effect intensity on mobile
           float timeScale = u_scale * 0.5;
           float noiseScale = 3.0 * u_scale;
           
-          // Simplified noise layers for better performance
           float n1 = noise(uv * noiseScale + u_time * timeScale);
           float n2 = noise(uv * (noiseScale * 2.0) - u_time * timeScale);
           
-          // Simplified voronoi for mobile
           float v1 = voronoi(uv * (5.0 * u_scale) + u_time * timeScale);
           
-          // Optimized swirl effect
           float angle = atan(uv.y - 0.5, uv.x - 0.5);
           float radius = length(uv - 0.5);
           float swirl = sin(angle * 3.0 + u_time * timeScale + radius * 5.0) * 0.5 + 0.5;
           
-          // Simplified combination of effects
           float blend = mix(n1 * 0.6 + n2 * 0.4, swirl, 0.3) + v1 * 0.2;
           
-          // Optimized color mixing
           vec3 color1 = mix(colorA, colorB, blend);
           vec3 color2 = mix(colorC, colorD, swirl);
           vec3 finalColor = mix(color1, color2, sin(u_time * timeScale) * 0.5 + 0.5);
           
-          // Simplified glow and vignette
           float glow = pow(1.0 - radius, 2.0) * 0.2 * u_scale;
           float vignette = smoothstep(1.2, 0.5, radius);
           finalColor = finalColor * vignette + vec3(glow) * colorD;
@@ -126,7 +120,6 @@ export const AnimatedBackground = () => {
     const quad = new THREE.Mesh(geometry, material);
     scene.add(quad);
 
-    // Handle both mouse and touch events
     const handlePointerMove = (event: MouseEvent | TouchEvent) => {
       let x, y;
       if (event instanceof MouseEvent) {
@@ -142,31 +135,27 @@ export const AnimatedBackground = () => {
       );
     };
 
-    // Add touch event listeners
     window.addEventListener('mousemove', handlePointerMove);
     window.addEventListener('touchmove', handlePointerMove);
     window.addEventListener('touchstart', handlePointerMove);
 
     const resize = () => {
-      const { clientWidth, clientHeight } = containerRef.current!;
+      const { clientWidth, clientHeight } = container;
       
-      // Set a lower pixel ratio for mobile devices
       const pixelRatio = isMobile ? Math.min(window.devicePixelRatio, 2) : window.devicePixelRatio;
       renderer.setPixelRatio(pixelRatio);
       
       renderer.setSize(clientWidth, clientHeight);
       material.uniforms.u_resolution.value.set(clientWidth, clientHeight);
       
-      // Update scale based on screen size
       material.uniforms.u_scale.value = window.innerWidth <= 768 ? 0.5 : 1.0;
     };
 
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
     resize();
     window.addEventListener('resize', resize);
 
     const animate = () => {
-      // Slower animation on mobile for better performance
       const timeScale = isMobile ? 0.3 : 0.5;
       material.uniforms.u_time.value = clock.getElapsedTime() * timeScale;
       renderer.render(scene, camera);
@@ -179,7 +168,7 @@ export const AnimatedBackground = () => {
       window.removeEventListener('mousemove', handlePointerMove);
       window.removeEventListener('touchmove', handlePointerMove);
       window.removeEventListener('touchstart', handlePointerMove);
-      containerRef.current?.removeChild(renderer.domElement);
+      container.removeChild(renderer.domElement);
       renderer.dispose();
     };
   }, []);

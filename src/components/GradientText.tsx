@@ -1,46 +1,22 @@
-import { CSSProperties } from 'react';
+'use client';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface GradientTextProps {
   text: string;
-  size: "large" | "small";
   className?: string;
-  fontClass: string;
 }
 
-export const GradientText = ({ text, size, className = "", fontClass }: GradientTextProps) => {
-  const baseStyle: CSSProperties = {
-    background: `linear-gradient(90deg, #FF9500 0%, #D85EFF 50%, #AE79FF 75%, #5271FF 100%)`,
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    display: 'inline-block',
-    transform: 'perspective(1000px) rotateX(20deg)',
-  };
-
-  const sizeStyles = {
-    large: {
-      ...baseStyle,
-      filter: 'drop-shadow(0 10px 0px #000)',
-    },
-    small: {
-      ...baseStyle,
-      filter: 'drop-shadow(0 5px 0px #000)',
-    },
-  };
-
+export const GradientText = ({ text, className = '' }: GradientTextProps) => {
   return (
-    <div className={`${fontClass} whitespace-nowrap overflow-x-auto hide-scrollbar ${className}`}>
-      {text.split('').map((letter, index) => (
-        <span
-          key={index}
-          className={`
-            ${size === 'large' ? 'text-5xl md:text-7xl lg:text-8xl' : 'text-2xl md:text-3xl lg:text-4xl'}
-            tracking-wider relative inline-block
-          `}
-          style={sizeStyles[size]}
-        >
-          {letter}
-        </span>
-      ))}
-    </div>
+    <motion.h1
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className={`font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 animate-gradient ${className}`}
+      style={{ backgroundSize: '200% 200%' }}
+    >
+      {text}
+    </motion.h1>
   );
 }; 

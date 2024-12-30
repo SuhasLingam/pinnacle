@@ -1,6 +1,6 @@
 'use client'
 
-import { Lightbulb, Users, TypeIcon as type, LucideIcon } from 'lucide-react'
+import { LucideIcon } from 'lucide-react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const menuItems = [
   { label: 'HOME', href: '#' },
@@ -86,15 +87,26 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <motion.a
-            href="#"
-            onClick={(e) => handleClick(e, '#')}
-            className="text-[#B4FF00] font-bold text-xl sm:text-2xl tracking-wider"
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="relative h-8 sm:h-10"
           >
-            PINNACLE
-          </motion.a>
+            <a 
+              href="#" 
+              onClick={(e) => handleClick(e, '#')}
+              className="block h-full"
+            >
+              <Image 
+                src="/LogoMain.svg"
+                alt="Pinnacle Logo"
+                width={40}
+                height={40}
+                className="h-full w-auto"
+                priority
+              />
+            </a>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -103,7 +115,7 @@ export function Navigation() {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleClick(e, item.href)}
-                className="text-white/70 hover:text-white tracking-[0.2em] text-sm font-medium transition-colors"
+                className="text-white/70 hover:text-white font-mono-rubik text-xs tracking-[0.2em] transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -159,7 +171,7 @@ export function Navigation() {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleClick(e, item.href)}
-                  className="block w-full py-3 text-white/70 hover:text-white tracking-[0.2em] text-sm font-medium transition-colors"
+                  className="block w-full py-3 text-white/70 hover:text-white font-mono-rubik text-xs tracking-[0.2em] transition-colors"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}

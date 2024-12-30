@@ -78,9 +78,9 @@ export function Timeline() {
               index % 2 === 0 ? 'sm:text-right' : 'sm:text-left'
             }`}>
               <div className="bg-[#1A1A1A] rounded-2xl p-6 border border-white/10">
-                <h3 className="text-[#B4FF00] font-bold mb-1">{event.date}</h3>
-                <h4 className="text-white font-semibold mb-2">{event.title}</h4>
-                <p className="text-white/70 text-sm">{event.description}</p>
+                <h3 className="text-[#B4FF00] font-mono-rubik text-sm sm:text-base mb-1">{event.date}</h3>
+                <h4 className="text-white font-mono-rubik text-base sm:text-lg mb-2">{event.title}</h4>
+                <p className="text-white/70 text-xs sm:text-sm">{event.description}</p>
               </div>
             </div>
           </motion.div>

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +14,13 @@
   --neon-purple: #9d71fd;
   --neon-indigo: #7c4dff;
   --gray-text: #868686;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
+  }
 }
 
 @layer base {
@@ -98,4 +106,8 @@ html {
   .text-2xl {
     font-size: 1.5rem;
   }
+}
+
+.font-mono-rubik {
+  font-family: "Rubik Mono One", monospace;
 }

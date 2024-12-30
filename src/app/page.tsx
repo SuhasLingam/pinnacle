@@ -42,7 +42,7 @@ export default function Home() {
                   variants={letterAnimation}
                   initial="initial"
                   animate="animate"
-                  className="text-[#B4FF00] text-[clamp(2.5rem,8vw,8rem)] font-extrabold"
+                  className="text-[#B4FF00] text-[clamp(2.5rem,8vw,8rem)] font-mono-rubik"
                   style={{
                     textShadow: '0 0 20px rgba(180, 255, 0, 0.3)'
                   }}
@@ -68,7 +68,7 @@ export default function Home() {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 1.4 + i * 0.1 }}
-                  className="text-[#FFFFFF] text-[clamp(1.25rem,3vw,2.5rem)] font-extrabold tracking-[0.2em]"
+                  className="text-[#FFFFFF] text-[clamp(1.25rem,3vw,2.5rem)] font-mono-rubik tracking-[0.2em]"
                   style={{
                     textShadow: '0 0 20px rgba(255, 255, 255, 0.3)'
                   }}
@@ -84,7 +84,7 @@ export default function Home() {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 1.7 + i * 0.1 }}
-                  className="text-[#5271FF] text-[clamp(1.25rem,3vw,2.5rem)] font-extrabold tracking-[0.2em]"
+                  className="text-[#5271FF] text-[clamp(1.25rem,3vw,2.5rem)] font-mono-rubik tracking-[0.2em]"
                   style={{
                     textShadow: '0 0 20px rgba(82, 113, 255, 0.3)'
                   }}
@@ -104,7 +104,7 @@ export default function Home() {
             whileTap={{ scale: 0.95 }}
             className="inline-block"
           >
-            <button className="bg-white text-black px-8 sm:px-12 py-3 sm:py-4 rounded-full hover:bg-gray-50 transition-all text-xs sm:text-sm font-bold tracking-[0.2em] shadow-lg hover:shadow-xl">
+            <button className="bg-white text-black px-8 sm:px-12 py-3 sm:py-4 rounded-full hover:bg-gray-50 transition-all text-xs sm:text-sm font-mono-rubik tracking-[0.2em] shadow-lg hover:shadow-xl">
               APPLY NOW
             </button>
           </motion.div>
@@ -120,7 +120,7 @@ export default function Home() {
         id="about" 
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
+        <h2 className="text-3xl sm:text-4xl font-mono-rubik mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
           <span className="text-[#B4FF00]">A</span>
           <span className="text-[#B4FF00]">B</span>
           <span className="text-[#5271FF]">O</span>
@@ -138,7 +138,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
           <GradientText spacing={true}>WHAT YOU GET</GradientText>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
@@ -177,7 +177,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
           <GradientText spacing={true}>WITH</GradientText>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-3xl mx-auto">
@@ -196,7 +196,7 @@ export default function Home() {
         id="timeline" 
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
           <GradientText spacing={true}>EVENT TIMELINE</GradientText>
         </h2>
         <Timeline />
@@ -211,7 +211,7 @@ export default function Home() {
         id="sponsors" 
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
           <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
             SPONSORS
           </span>

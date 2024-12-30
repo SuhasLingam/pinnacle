@@ -13,7 +13,7 @@ interface GradientTextProps {
 export function GradientText({ children, className = "", spacing = false }: GradientTextProps) {
   return (
     <span
-      className={`bg-gradient-to-r from-[#8BE8FF] via-[#9D71FD] to-[#7C4DFF] text-transparent bg-clip-text font-bold
+      className={`bg-gradient-to-r from-[#8BE8FF] via-[#9D71FD] to-[#7C4DFF] text-transparent bg-clip-text font-mono-rubik
       ${spacing ? 'tracking-[0.3em] sm:tracking-[0.5em]' : ''} ${className}`}
       style={{
         textShadow: '0 0 20px rgba(139, 232, 255, 0.3)'
@@ -83,7 +83,7 @@ export function FeatureCard({
             </motion.div>
           )}
           <motion.span 
-            className="bg-gradient-to-r from-[#8BE8FF] via-[#9D71FD] to-[#7C4DFF] text-transparent bg-clip-text font-bold tracking-wider text-sm sm:text-base"
+            className="bg-gradient-to-r from-[#8BE8FF] via-[#9D71FD] to-[#7C4DFF] text-transparent bg-clip-text font-mono-rubik tracking-wider text-sm sm:text-base"
             style={{
               textShadow: '0 0 10px rgba(139, 232, 255, 0.3)'
             }}
@@ -141,7 +141,7 @@ export function StatCard({ number, label }: StatCardProps) {
     >
       <div className="flex flex-col items-center gap-1 sm:gap-2">
         <motion.span 
-          className="font-bold text-lg sm:text-xl tracking-wider"
+          className="font-mono-rubik text-lg sm:text-xl tracking-wider"
           whileHover={{ scale: 1.1 }}
           style={{
             color: '#40F8FF',
@@ -151,7 +151,7 @@ export function StatCard({ number, label }: StatCardProps) {
           {number}
         </motion.span>
         <motion.span 
-          className="text-white/90 text-xs sm:text-sm uppercase tracking-[0.2em]"
+          className="text-white/90 text-xs sm:text-sm uppercase tracking-[0.2em] font-mono-rubik"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}

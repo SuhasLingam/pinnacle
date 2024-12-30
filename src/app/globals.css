@@ -1,33 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
+  --font-mono: "Space Mono", monospace;
+  --card-bg: #1c1c1c;
+  --neon-cyan: #8be8ff;
+  --neon-purple: #9d71fd;
+  --neon-indigo: #7c4dff;
+  --gray-text: #868686;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+    font-family: var(--font-mono);
+  }
 }
 
-/* Add smooth scrolling */
+.card {
+  @apply relative bg-[#1C1C1C] rounded-[40px] p-8 border border-gray-800/50;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.5),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover {
+  @apply bg-[#1C1C1C]/95;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 70px rgba(0, 0, 0, 0.6);
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-[#8BE8FF] via-[#9D71FD] to-[#7C4DFF] text-transparent bg-clip-text;
+  text-shadow: 0 0 20px rgba(139, 232, 255, 0.3);
+}
+
+.timeline-line {
+  @apply absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full;
+  background: linear-gradient(
+    180deg,
+    var(--neon-cyan) 0%,
+    var(--neon-purple) 50%,
+    var(--neon-indigo) 100%
+  );
+  opacity: 0.6;
+}
+
+.timeline-dot {
+  @apply absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 15px var(--neon-cyan);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 15px var(--neon-cyan);
+  }
+  50% {
+    box-shadow: 0 0 25px var(--neon-cyan);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--neon-cyan);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
-}
-
-/* Improve button and link interactions */
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Add hover effects */
-a:hover {
-  opacity: 0.8;
 }
 
 /* Responsive text sizing */
@@ -38,15 +98,4 @@ a:hover {
   .text-2xl {
     font-size: 1.5rem;
   }
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }

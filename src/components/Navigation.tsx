@@ -1,33 +1,176 @@
-import Image from 'next/image';
-import { MobileMenu } from './MobileMenu';
+'use client';
 
-const navItems = ['HOME', 'ABOUT', 'SCHEDULE', 'SPONSORS', 'PARTNERS'];
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export const Navigation = () => (
-  <nav className="w-full p-6 flex justify-between px-[7%] items-center">
-    <Image 
-      src="/LogoMain.svg"
-      alt="TIC Logo"
-      width={117}
-      height={50}
-      className="cursor-pointer"
-      priority
-    />
+const menuItems = [
+  { label: 'HOME', href: '#' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'TIMELINE', href: '#timeline' },
+  { label: 'SPONSORS', href: '#sponsors' },
+];
+
+export function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Handle smooth scrolling
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     
-    {/* Desktop Menu */}
-    <div className="hidden md:flex gap-8">
-      {navItems.map((item) => (
-        <a 
-          key={item} 
-          href="#" 
-          className="text-black font-bold hover:opacity-75 transition-opacity"
-        >
-          {item}
-        </a>
-      ))}
-    </div>
+    // Close mobile menu first
+    setIsOpen(false);
 
-    {/* Mobile Menu */}
-    <MobileMenu items={navItems} />
-  </nav>
-); 
+    // Small delay to allow menu to close
+    setTimeout(() => {
+      // If it's the home link, scroll to top
+      if (href === '#') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        return;
+      }
+
+      // Find the target element
+      const target = document.querySelector(href);
+      if (target) {
+        // Get the navigation height dynamically
+        const nav = document.querySelector('nav');
+        const navHeight = nav ? nav.offsetHeight : 80;
+        
+        // Calculate position accounting for nav height and current scroll
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+        // Smooth scroll to the target
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100); // Small delay for menu animation
+  };
+
+  // Close menu on route change or scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isOpen]);
+
+  // Prevent scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo */}
+          <motion.a
+            href="#"
+            onClick={(e) => handleClick(e, '#')}
+            className="text-[#B4FF00] font-bold text-xl sm:text-2xl tracking-wider"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            PINNACLE
+          </motion.a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {menuItems.map((item) => (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
+                className="text-white/70 hover:text-white tracking-[0.2em] text-sm font-medium transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden w-10 h-10 flex items-center justify-center"
+            onClick={() => setIsOpen(!isOpen)}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Toggle menu"
+          >
+            <div className="relative w-6 h-5">
+              <motion.span
+                className="absolute w-6 h-0.5 bg-white"
+                style={{ top: "25%" }}
+                animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.span
+                className="absolute w-6 h-0.5 bg-white"
+                style={{ top: "50%" }}
+                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.span
+                className="absolute w-6 h-0.5 bg-white"
+                style={{ top: "75%" }}
+                animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+            </div>
+          </motion.button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden border-t border-white/10 bg-black/80 backdrop-blur-md"
+          >
+            <div className="px-4 py-4 space-y-2">
+              {menuItems.map((item, index) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
+                  className="block w-full py-3 text-white/70 hover:text-white tracking-[0.2em] text-sm font-medium transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+} 

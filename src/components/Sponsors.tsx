@@ -1,93 +1,149 @@
 'use client';
+
 import { motion } from 'framer-motion';
-import { GradientText } from './GradientText';
-import { Card } from './Card';
 
-export const Sponsors = () => {
-  const sponsorTiers = [
-    {
-      tier: "Platinum Sponsors",
-      gradient: "from-gray-100 via-gray-300 to-gray-100",
-      sponsors: [
-        { name: "TechCorp", logo: "🏢" },
-        { name: "InnovateX", logo: "🚀" },
-        { name: "FutureHub", logo: "🌟" }
-      ]
-    },
-    {
-      tier: "Gold Sponsors",
-      gradient: "from-yellow-300 via-yellow-400 to-yellow-300",
-      sponsors: [
-        { name: "DevTools", logo: "🛠" },
-        { name: "CloudNet", logo: "☁️" },
-        { name: "CodeLabs", logo: "💻" },
-        { name: "BuildEx", logo: "🏗" }
-      ]
-    },
-    {
-      tier: "Community Partners",
-      gradient: "from-purple-400 via-pink-400 to-purple-400",
-      sponsors: [
-        { name: "TechHub", logo: "🎯" },
-        { name: "DevCommunity", logo: "🤝" },
-        { name: "CodeSchool", logo: "🎓" }
-      ]
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
     }
-  ];
+  }
+};
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
+interface SponsorSectionProps {
+  title: string
+  height: string
+  count: number
+  color: string
+}
+
+function SponsorSection({ title, height, count, color }: SponsorSectionProps) {
   return (
-    <section id="sponsors" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <GradientText text="Our Sponsors" className="text-3xl sm:text-4xl mb-6" />
-          <p className="text-white/80 max-w-3xl mx-auto text-lg">
-            Supported by industry leaders and innovative companies
-          </p>
-        </div>
-
-        {sponsorTiers.map((tier) => (
-          <div key={tier.tier} className="mb-16 last:mb-0">
+    <motion.div 
+      className="mb-12 sm:mb-16 last:mb-0 px-4 sm:px-6 lg:px-8"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+    >
+      <motion.h3 
+        className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center tracking-wider"
+        style={{ color }}
+      >
+        {title}
+      </motion.h3>
+      <div 
+        className={`grid grid-cols-1 ${
+          count === 1 ? 'max-w-2xl mx-auto' : 
+          count === 2 ? 'sm:grid-cols-2' :
+          'sm:grid-cols-2 lg:grid-cols-3'
+        } gap-4 sm:gap-6 lg:gap-8`}
+      >
+        {Array(count).fill(0).map((_, i) => (
+          <motion.div
+            key={i}
+            variants={itemVariants}
+            whileHover={{ 
+              scale: 1.02,
+              boxShadow: `0 0 30px ${color}30`
+            }}
+            className={`
+              ${height} 
+              bg-[#1A1A1A] 
+              rounded-xl sm:rounded-2xl 
+              flex items-center justify-center 
+              relative group overflow-hidden
+              transition-all duration-300
+              ${count === 1 ? 'sm:h-56 md:h-64' : ''}
+            `}
+            style={{
+              border: `1px solid ${color}20`
+            }}
+          >
+            {/* Placeholder for logo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20" />
+            
+            {/* Hover Glow */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-8"
-            >
-              <h3 className={`text-transparent bg-clip-text bg-gradient-to-r ${tier.gradient} text-2xl font-bold`}>
-                {tier.tier}
-              </h3>
-            </motion.div>
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{
+                background: `radial-gradient(circle at center, ${color}20 0%, transparent 70%)`
+              }}
+            />
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {tier.sponsors.map((sponsor, index) => (
-                <motion.div
-                  key={sponsor.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="p-6 text-center h-full" hoverScale={true}>
-                    <motion.div
-                      whileHover={{ 
-                        scale: 1.1,
-                        rotate: [0, -5, 5, 0],
-                      }}
-                      transition={{ duration: 0.5 }}
-                      className="text-5xl mb-4"
-                    >
-                      {sponsor.logo}
-                    </motion.div>
-                    <div className="text-white font-medium text-lg">
-                      {sponsor.name}
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+            {/* Animated Border */}
+            <motion.div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{
+                background: `linear-gradient(90deg, transparent, ${color}40, transparent)`,
+                transform: 'translateX(-100%)'
+              }}
+              animate={{
+                transform: ['translateX(-100%)', 'translateX(100%)']
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'linear'
+              }}
+            />
+
+            {/* Placeholder Text (remove when adding actual logos) */}
+            <span className="text-white/30 text-sm sm:text-base">
+              Logo Placeholder
+            </span>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.div>
   );
-}; 
+}
+
+export function Sponsors() {
+  return (
+    <div className="w-full max-w-7xl mx-auto py-8 sm:py-12">
+      <SponsorSection 
+        title="TITLE SPONSOR"
+        height="h-40 sm:h-48"
+        count={1}
+        color="#B4FF00"
+      />
+      
+      <SponsorSection 
+        title="PLATINUM SPONSORS"
+        height="h-28 sm:h-32"
+        count={3}
+        color="#5271FF"
+      />
+      
+      <SponsorSection 
+        title="DIAMOND SPONSORS"
+        height="h-28 sm:h-32"
+        count={3}
+        color="#40F8FF"
+      />
+      
+      <SponsorSection 
+        title="GOLD SPONSORS"
+        height="h-24 sm:h-28"
+        count={3}
+        color="#FFD700"
+      />
+      
+      <SponsorSection 
+        title="PARTNERS"
+        height="h-24 sm:h-28"
+        count={3}
+        color="#9D71FD"
+      />
+    </div>
+  );
+} 

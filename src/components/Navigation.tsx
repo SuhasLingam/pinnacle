@@ -1,66 +1,142 @@
 'use client';
-import React, { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const Navigation = () => {
+const menuItems = [
+  { label: 'HOME', href: '#' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'TIMELINE', href: '#timeline' },
+  { label: 'SPONSORS', href: '#sponsors' },
+];
+
+export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
-    { name: 'Timeline', href: '#timeline' },
-    { name: 'Prizes', href: '#prizes' },
-    { name: 'Sponsors', href: '#sponsors' },
-    { name: 'Register', href: '#register' },
-  ];
+  // Handle smooth scrolling
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    // Close mobile menu first
+    setIsOpen(false);
+
+    // Small delay to allow menu to close
+    setTimeout(() => {
+      // If it's the home link, scroll to top
+      if (href === '#') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        return;
+      }
+
+      // Find the target element
+      const target = document.querySelector(href);
+      if (target) {
+        // Get the navigation height dynamically
+        const nav = document.querySelector('nav');
+        const navHeight = nav ? nav.offsetHeight : 80;
+        
+        // Calculate position accounting for nav height and current scroll
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+        // Smooth scroll to the target
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100); // Small delay for menu animation
+  };
+
+  // Close menu on route change or scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isOpen]);
+
+  // Prevent scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500"
+          <motion.a
+            href="#"
+            onClick={(e) => handleClick(e, '#')}
+            className="text-[#B4FF00] font-bold text-xl sm:text-2xl tracking-wider"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             PINNACLE
-          </motion.div>
+          </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {menuItems.map((item) => (
               <motion.a
-                key={item.name}
+                key={item.label}
                 href={item.href}
-                whileHover={{ scale: 1.05 }}
+                onClick={(e) => handleClick(e, item.href)}
+                className="text-white/70 hover:text-white tracking-[0.2em] text-sm font-medium transition-colors"
+                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-white hover:text-purple-300 transition-colors font-medium relative group"
               >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                {item.label}
               </motion.a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <motion.button
-            whileTap={{ scale: 0.95 }}
+            className="md:hidden w-10 h-10 flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
+            whileTap={{ scale: 0.9 }}
+            aria-label="Toggle menu"
           >
-            <div className="w-6 h-5 flex flex-col justify-between">
+            <div className="relative w-6 h-5">
               <motion.span
+                className="absolute w-6 h-0.5 bg-white"
+                style={{ top: "25%" }}
                 animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                className="w-full h-0.5 bg-white transform origin-left transition-transform"
+                transition={{ duration: 0.2 }}
               />
               <motion.span
+                className="absolute w-6 h-0.5 bg-white"
+                style={{ top: "50%" }}
                 animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="w-full h-0.5 bg-white"
+                transition={{ duration: 0.2 }}
               />
               <motion.span
+                className="absolute w-6 h-0.5 bg-white"
+                style={{ top: "75%" }}
                 animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                className="w-full h-0.5 bg-white transform origin-left transition-transform"
+                transition={{ duration: 0.2 }}
               />
             </div>
           </motion.button>
@@ -74,20 +150,21 @@ export const Navigation = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/20 backdrop-blur-lg"
+            transition={{ duration: 0.3 }}
+            className="md:hidden border-t border-white/10 bg-black/80 backdrop-blur-md"
           >
-            <div className="px-4 pt-2 pb-4 space-y-2">
-              {navItems.map((item) => (
+            <div className="px-4 py-4 space-y-2">
+              {menuItems.map((item, index) => (
                 <motion.a
-                  key={item.name}
+                  key={item.label}
                   href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
+                  className="block w-full py-3 text-white/70 hover:text-white tracking-[0.2em] text-sm font-medium transition-colors"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="block py-2 text-white hover:text-purple-300 transition-colors font-medium"
+                  transition={{ delay: index * 0.1 }}
                 >
-                  {item.name}
+                  {item.label}
                 </motion.a>
               ))}
             </div>
@@ -96,4 +173,4 @@ export const Navigation = () => {
       </AnimatePresence>
     </nav>
   );
-}; 
+} 

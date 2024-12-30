@@ -1,237 +1,334 @@
 'use client';
-import { AnimatedBackground } from '@/components/AnimatedBackground';
 import { Navigation } from '@/components/Navigation';
-import { GradientText } from '@/components/GradientText';
 import { About } from '@/components/About';
 import { Timeline } from '@/components/Timeline';
-import { Prizes } from '@/components/Prizes';
 import { Sponsors } from '@/components/Sponsors';
-import { Register } from '@/components/Register';
-import { motion, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { GradientText, FeatureCard, StatCard } from '@/components/FeatureCards';
+import { Lightbulb, Users, BookOpen, Presentation } from 'lucide-react';
+
+const letterAnimation = {
+  initial: { y: 40, opacity: 0 },
+  animate: (i: number) => ({
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.8,
+      ease: [0.215, 0.61, 0.355, 1]
+    }
+  })
+};
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-
   return (
-    <main className="min-h-screen relative overflow-hidden">
-      <AnimatedBackground />
+    <main className="min-h-screen bg-black text-white overflow-hidden">
       <Navigation />
       
-      {/* Scroll Progress Indicator */}
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 z-50"
-        style={{ scaleX: scrollYProgress }}
-      />
-      
-      {/* Hero Section with proper spacing */}
-      <div className="relative z-10 min-h-[calc(100vh-64px)] mt-16 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      <section className="min-h-[90vh] sm:min-h-screen flex flex-col items-center justify-center px-4 pt-20 sm:pt-0">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center space-y-8 max-w-4xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center w-full"
         >
-          {/* Remove the oval shape div and simplify the title */}
-          <GradientText 
-            text="Pinnacle Hackathon 2025" 
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight"
-          />
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-4"
-          >
-            <p className="text-white/90 text-xl sm:text-2xl md:text-3xl font-light max-w-2xl mx-auto leading-relaxed">
-              Innovate. Create. Transform.
-            </p>
-            <p className="text-white/60 text-lg sm:text-xl max-w-3xl mx-auto">
-              Join the largest student-run hackathon in India
-            </p>
-          </motion.div>
-
-          {/* CTA Buttons with Enhanced Design */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          >
-            <motion.a
-              href="#register"
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)'
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-medium text-lg shadow-lg hover:shadow-xl transform transition-all w-full sm:w-auto overflow-hidden"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-20 transition-opacity" />
-              <span className="relative flex items-center justify-center gap-2">
-                Register Now
+          {/* PINNACLE */}
+          <h1 className="mb-6 sm:mb-8 overflow-hidden">
+            <div className="flex justify-center flex-wrap" style={{ gap: "clamp(0.5rem, 2vw, 2.5rem)" }}>
+              {['P', 'I', 'N', 'N', 'A', 'C', 'L', 'E'].map((letter, i) => (
                 <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
+                  key={i}
+                  custom={i}
+                  variants={letterAnimation}
+                  initial="initial"
+                  animate="animate"
+                  className="text-[#B4FF00] text-[clamp(2.5rem,8vw,8rem)] font-extrabold"
+                  style={{
+                    textShadow: '0 0 20px rgba(180, 255, 0, 0.3)'
+                  }}
                 >
-                  →
+                  {letter}
                 </motion.span>
-              </span>
-            </motion.a>
-            <motion.a
-              href="#about"
-              whileHover={{ 
-                scale: 1.05,
-                backgroundColor: 'rgba(255, 255, 255, 0.1)'
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="group px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-medium text-lg shadow-lg hover:shadow-xl transform transition-all border border-white/20 w-full sm:w-auto"
-            >
-              <span className="flex items-center justify-center gap-2">
-                Learn More
-                <span className="group-hover:rotate-90 transition-transform duration-300">
-                  ↓
-                </span>
-              </span>
-            </motion.a>
+              ))}
+            </div>
+          </h1>
+
+          {/* 1ST EDITION */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="mb-12 sm:mb-16"
+          >
+            <div className="flex justify-center flex-wrap" style={{ gap: "clamp(0.25rem, 1vw, 1.5rem)" }}>
+              {/* 1ST */}
+              {['1', 'S', 'T'].map((letter, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 1.4 + i * 0.1 }}
+                  className="text-[#FFFFFF] text-[clamp(1.25rem,3vw,2.5rem)] font-extrabold tracking-[0.2em]"
+                  style={{
+                    textShadow: '0 0 20px rgba(255, 255, 255, 0.3)'
+                  }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+              <span className="mx-2 sm:mx-4"></span>
+              {/* EDITION */}
+              {['E', 'D', 'I', 'T', 'I', 'O', 'N'].map((letter, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 1.7 + i * 0.1 }}
+                  className="text-[#5271FF] text-[clamp(1.25rem,3vw,2.5rem)] font-extrabold tracking-[0.2em]"
+                  style={{
+                    textShadow: '0 0 20px rgba(82, 113, 255, 0.3)'
+                  }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Stats with Enhanced Visual Design */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="pt-12 flex flex-wrap justify-center gap-8"
+          {/* Apply Button */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.4, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block"
           >
-            {[
-              { icon: "⏱", label: "Hours", value: "48" },
-              { icon: "👥", label: "Participants", value: "500+" },
-              { icon: "💰", label: "in Prizes", value: "₹5L+" },
-              { icon: "🌟", label: "Tracks", value: "5+" }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                whileHover={{ y: -5 }}
-                className="flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
-              >
-                <span className="text-2xl mb-2">{stat.icon}</span>
-                <span className="text-2xl font-bold text-white">{stat.value}</span>
-                <span className="text-white/60 text-sm">{stat.label}</span>
-              </motion.div>
-            ))}
-          </motion.div> */}
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-            className="absolute bottom-3 left-1/2 transform -translate-x-1/2"
-          >
-            <motion.div
-              className="flex flex-col items-center gap-4"
-              animate={{ y: [0, 8, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <div className="w-6 h-10 border-2 border-white/30 rounded-full p-1">
-                <motion.div
-                  className="w-2 h-2 bg-white/50 rounded-full"
-                  animate={{ y: [0, 12, 0] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              </div>
-              <span className="text-white/30 text-sm font-light tracking-wider uppercase">
-                Scroll
-              </span>
-            </motion.div>
+            <button className="bg-white text-black px-8 sm:px-12 py-3 sm:py-4 rounded-full hover:bg-gray-50 transition-all text-xs sm:text-sm font-bold tracking-[0.2em] shadow-lg hover:shadow-xl">
+              APPLY NOW
+            </button>
           </motion.div>
         </motion.div>
-      </div>
+      </section>
 
-      {/* Content sections with proper spacing */}
-      <div className="relative z-10 space-y-32">
-        <About />
-        <Timeline />
-        <Prizes />
-        <Sponsors />
-        <Register />
-      </div>
-
-      {/* Enhanced Footer */}
-      <motion.footer
+      {/* About Section */}
+      <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="relative z-10 bg-black/30 backdrop-blur-lg py-16 mt-20"
+        transition={{ duration: 0.8 }}
+        id="about" 
+        className="py-16 sm:py-20 px-4"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="space-y-4">
-              <h3 className="text-white font-semibold text-xl mb-4">Contact Us</h3>
-              <div className="space-y-2">
-                <a href="mailto:info@pinnacle-hackathon.com" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
-                  <span>📧</span> info@pinnacle-hackathon.com
-                </a>
-                <a href="tel:+911234567890" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
-                  <span>📞</span> +91 1234567890
-          </a>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
+          <span className="text-[#B4FF00]">A</span>
+          <span className="text-[#B4FF00]">B</span>
+          <span className="text-[#5271FF]">O</span>
+          <span className="text-[#5271FF]">U</span>
+          <span className="text-[#5271FF]">T</span>
+        </h2>
+        <About />
+      </motion.section>
+
+      {/* What You Get Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="py-16 sm:py-20 px-4"
+      >
+        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+          <GradientText spacing={true}>WHAT YOU GET</GradientText>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <FeatureCard
+            icon={Lightbulb}
+            title="INNOVATION HUB"
+            description="Join Forces With Brilliant Minds To Solve Real-World Challenges Using Cutting-Edge Technology"
+            iconColor="text-orange-400"
+          />
+          <FeatureCard
+            icon={Presentation}
+            title="EXPERT MENTORSHIP"
+            description="Get Guidance From Industry Leaders And Technical Experts Throughout Your Journey"
+            iconColor="text-[#8BE8FF]"
+          />
+          <FeatureCard
+            icon={Users}
+            title="NETWORKING"
+            description="Connect With Fellow Developers, Designers, And Entrepreneurs"
+            iconColor="text-[#9D71FD]"
+          />
+          <FeatureCard
+            icon={BookOpen}
+            title="LEARN & GROW"
+            description="Access Exclusive Workshops, Tech Talks, And Hands-On Learning Experiences"
+            iconColor="text-[#7C4DFF]"
+          />
         </div>
-            </div>
+      </motion.section>
+
+      {/* WITH Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="py-16 sm:py-20 px-4"
+      >
+        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+          <GradientText spacing={true}>WITH</GradientText>
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-3xl mx-auto">
+          <StatCard number="200+" label="PARTICIPANTS" />
+          <StatCard number="1L+" label="PRIZE POOL" />
+          <StatCard number="20+" label="MENTORS" />
+        </div>
+      </motion.section>
+
+      {/* Timeline Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="timeline" 
+        className="py-16 sm:py-20 px-4"
+      >
+        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+          <GradientText spacing={true}>EVENT TIMELINE</GradientText>
+        </h2>
+        <Timeline />
+      </motion.section>
+
+      {/* Sponsors Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="sponsors" 
+        className="py-16 sm:py-20 px-4"
+      >
+        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 sm:mb-16">
+          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
+            SPONSORS
+          </span>
+        </h2>
+        <Sponsors />
+      </motion.section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 bg-black/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 py-12 sm:py-16">
+          {/* Footer Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+            {/* Branding */}
             <div className="space-y-4">
-              <h3 className="text-white font-semibold text-xl mb-4">Follow Us</h3>
-              <div className="flex gap-6">
-                {[
-                  { icon: "𝕏", label: "Twitter", href: "#" },
-                  { icon: "in", label: "LinkedIn", href: "#" },
-                  { icon: "📸", label: "Instagram", href: "#" }
-                ].map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
-                  >
-                    <span className="text-xl">{social.icon}</span>
-                  </motion.a>
-                ))}
+              <h3 className="text-[#B4FF00] font-bold text-xl tracking-wider">PINNACLE</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                Join us in this exciting journey of innovation, learning, and growth at Pinnacle Hackathon.
+              </p>
+              <div className="flex space-x-4 pt-2">
+                <a href="#" className="text-white/70 hover:text-white transition-colors">
+                  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </motion.div>
+                </a>
+                <a href="#" className="text-white/70 hover:text-white transition-colors">
+                  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                </a>
+                <a href="#" className="text-white/70 hover:text-white transition-colors">
+                  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fillRule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                </a>
               </div>
             </div>
+
+            {/* Quick Links */}
             <div className="space-y-4">
-              <h3 className="text-white font-semibold text-xl mb-4">Quick Links</h3>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  "FAQs",
-                  "Code of Conduct",
-                  "Terms & Conditions",
-                  "Privacy Policy"
-                ].map((link) => (
-                  <motion.a
-                    key={link}
-                    href="#"
-                    whileHover={{ x: 5 }}
-                    className="text-white/70 hover:text-white transition-colors"
-                  >
-                    {link}
-                  </motion.a>
-                ))}
+              <h3 className="text-white font-semibold tracking-wider">QUICK LINKS</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#about" className="text-white/70 hover:text-white text-sm transition-colors">About</a>
+                </li>
+                <li>
+                  <a href="#timeline" className="text-white/70 hover:text-white text-sm transition-colors">Timeline</a>
+                </li>
+                <li>
+                  <a href="#sponsors" className="text-white/70 hover:text-white text-sm transition-colors">Sponsors</a>
+                </li>
+                <li>
+                  <a href="#" className="text-white/70 hover:text-white text-sm transition-colors">FAQs</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="space-y-4">
+              <h3 className="text-white font-semibold tracking-wider">CONTACT</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a href="mailto:info@pinnacle.com" className="text-white/70 hover:text-white text-sm transition-colors">
+                    info@pinnacle.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+1234567890" className="text-white/70 hover:text-white text-sm transition-colors">
+                    +123 456 7890
+                  </a>
+                </li>
+                <li className="text-white/70 text-sm">
+                  123 Innovation Street<br />
+                  Tech City, TC 12345
+                </li>
+              </ul>
+            </div>
+
+            {/* Newsletter
+            <div className="space-y-4">
+              <h3 className="text-white font-semibold tracking-wider">STAY UPDATED</h3>
+              <p className="text-white/70 text-sm">Subscribe to our newsletter for updates.</p>
+              <form className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="bg-white/10 text-white placeholder-white/50 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#B4FF00]/50"
+                />
+                <button
+                  type="submit"
+                  className="bg-[#B4FF00] text-black px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#B4FF00]/90 transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div> */}
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="mt-12 pt-8 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-white/50 text-sm">
+                © 2024 Pinnacle. All rights reserved.
+              </p>
+              <div className="flex space-x-6">
+                <a href="#" className="text-white/50 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                <a href="#" className="text-white/50 hover:text-white text-sm transition-colors">Terms of Service</a>
               </div>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-white/10 text-center">
-            <p className="text-white/50">
-              © 2024 Pinnacle Hackathon. All rights reserved.
-            </p>
-          </div>
-    </div>
-      </motion.footer>
+        </div>
+      </footer>
     </main>
   );
 }

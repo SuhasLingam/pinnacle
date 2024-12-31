@@ -285,7 +285,7 @@ export default function Home() {
                   <a href="#sponsors" className="text-white/70 hover:text-white text-sm transition-colors">Sponsors</a>
                 </li>
                 <li>
-                  <a href="#" className="text-white/70 hover:text-white text-sm transition-colors">FAQs</a>
+                  <a href="#faq" className="text-white/70 hover:text-white text-sm transition-colors">FAQs</a>
                 </li>
               </ul>
             </div>

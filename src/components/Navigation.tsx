@@ -9,6 +9,7 @@ const menuItems = [
   { label: 'ABOUT', href: '#about' },
   { label: 'TIMELINE', href: '#timeline' },
   { label: 'SPONSORS', href: '#sponsors' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 export function Navigation() {

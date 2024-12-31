@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import Image from 'next/image';
 
 const menuItems = [
@@ -14,6 +14,12 @@ const menuItems = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   // Handle smooth scrolling
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -56,13 +62,12 @@ export function Navigation() {
   // Handle scroll effects
   useEffect(() => {
     const handleScroll = () => {
-      if (isOpen) setIsOpen(false);
       setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isOpen]);
+  }, []);
 
   // Handle resize
   useEffect(() => {
@@ -96,6 +101,12 @@ export function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 origin-left"
+        style={{ scaleX }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
@@ -179,7 +190,7 @@ export function Navigation() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden border-t border-white/10 bg-black/80 backdrop-blur-xl"
+            className="md:hidden border-t border-white/10 bg-[#030014]/95 backdrop-blur-xl"
           >
             <div className="px-4 py-4 space-y-2">
               {menuItems.map((item, index) => (

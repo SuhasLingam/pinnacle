@@ -1,8 +1,33 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
+};
 
 const AnimatedBackground = () => {
+  const { width } = useWindowSize();
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#030014]">
       {/* Main gradient background */}
@@ -121,7 +146,7 @@ const AnimatedBackground = () => {
               opacity: 0,
             }}
             animate={{
-              x: [-200, window.innerWidth + 200],
+              x: [-200, width + 200],
               opacity: [0, 0.8, 0],
               scale: [1, 1.2, 1],
             }}
@@ -190,7 +215,7 @@ const AnimatedBackground = () => {
         <motion.div
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            background: 'url("data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%" height="100%" filter="url(%23noiseFilter)"/%3E%3C/svg%3E")',
+            background: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.005\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%\' height=\'100%\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
           }}
           animate={{
             scale: [1, 1.5, 1],

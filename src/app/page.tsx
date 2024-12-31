@@ -3,6 +3,7 @@ import { Navigation } from '@/components/Navigation';
 import { About } from '@/components/About';
 import { Timeline } from '@/components/Timeline';
 import { Sponsors } from '@/components/Sponsors';
+import { FAQ } from '@/components/FAQ';
 import { motion } from 'framer-motion';
 import { GradientText, FeatureCard, StatCard } from '@/components/FeatureCards';
 import { Lightbulb, Users, BookOpen, Presentation } from 'lucide-react';
@@ -120,7 +121,7 @@ export default function Home() {
         id="about" 
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-3xl sm:text-4xl font-mono-rubik mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
+        <h2 className="text-3xl sm:text-4xl  font-mono-rubik mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
           <span className="text-[#B4FF00]">A</span>
           <span className="text-[#B4FF00]">B</span>
           <span className="text-[#5271FF]">O</span>
@@ -217,6 +218,21 @@ export default function Home() {
           </span>
         </h2>
         <Sponsors />
+      </motion.section>
+
+      {/* FAQ Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="faq" 
+        className="py-16 sm:py-20 px-4"
+      >
+        <h2 className="text-5xl sm:text-6xl font-mono-rubik text-center mb-12 sm:mb-16">
+          <GradientText spacing={true}>FAQ</GradientText>
+        </h2>
+        <FAQ />
       </motion.section>
 
       {/* Footer */}

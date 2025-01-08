@@ -59,7 +59,7 @@ const faqData = [
   },
   {
     question: "How does the selection process work?",
-    answer: "The selection process is based on your application and profile. We look for passionate individuals who can contribute to the hacker house community and demonstrate their commitment to technology and innovation."
+    answer: "The selection process is based on your application and profile. We look for passionate individuals who can contribute to the the incite crew and demonstrate their commitment to technology and innovation."
   },
   {
     question: "What is the registration fee?",

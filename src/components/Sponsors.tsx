@@ -1,21 +1,30 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1
+      staggerChildren: 0.1,
+      delayChildren: 0.05
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
+  hidden: { opacity: 0, y: 10 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "tween",
+      ease: "easeOut",
+      duration: 0.4
+    }
+  }
 };
 
 interface SponsorSectionProps {
@@ -26,13 +35,18 @@ interface SponsorSectionProps {
 }
 
 function SponsorSection({ title, height, count, color }: SponsorSectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+  
   return (
     <motion.div 
       className="mb-12 sm:mb-16 last:mb-0 px-4 sm:px-6 lg:px-8"
-      variants={containerVariants}
-      initial="hidden"
+      variants={prefersReducedMotion ? {} : containerVariants}
+      initial={prefersReducedMotion ? "show" : "hidden"}
       whileInView="show"
-      viewport={{ once: true }}
+      viewport={{ 
+        once: true,
+        margin: "0px 0px -100px 0px" // Trigger animation earlier
+      }}
     >
       <motion.h3 
         className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center tracking-wider"
@@ -50,8 +64,8 @@ function SponsorSection({ title, height, count, color }: SponsorSectionProps) {
         {Array(count).fill(0).map((_, i) => (
           <motion.div
             key={i}
-            variants={itemVariants}
-            whileHover={{ 
+            variants={prefersReducedMotion ? {} : itemVariants}
+            whileHover={prefersReducedMotion ? {} : { 
               scale: 1.02,
               boxShadow: `0 0 30px ${color}30`
             }}
@@ -61,40 +75,46 @@ function SponsorSection({ title, height, count, color }: SponsorSectionProps) {
               rounded-xl sm:rounded-2xl 
               flex items-center justify-center 
               relative group overflow-hidden
-              transition-all duration-300
+              will-change-transform
               ${count === 1 ? 'sm:h-56 md:h-64' : ''}
             `}
             style={{
-              border: `1px solid ${color}20`
+              border: `1px solid ${color}20`,
+              transform: "translate3d(0,0,0)",
+              backfaceVisibility: "hidden"
             }}
           >
             {/* Placeholder for logo */}
             <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20" />
             
-            {/* Hover Glow */}
-            <motion.div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background: `radial-gradient(circle at center, ${color}20 0%, transparent 70%)`
-              }}
-            />
+            {/* Hover Glow - Only render when not using reduced motion */}
+            {!prefersReducedMotion && (
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: `radial-gradient(circle at center, ${color}20 0%, transparent 70%)`
+                }}
+              />
+            )}
 
-            {/* Animated Border */}
-            <motion.div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${color}40, transparent)`,
-                transform: 'translateX(-100%)'
-              }}
-              animate={{
-                transform: ['translateX(-100%)', 'translateX(100%)']
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'linear'
-              }}
-            />
+            {/* Animated Border - Only render when not using reduced motion */}
+            {!prefersReducedMotion && (
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: `linear-gradient(90deg, transparent, ${color}40, transparent)`,
+                  transform: 'translateX(-100%)'
+                }}
+                animate={{
+                  transform: ['translateX(-100%)', 'translateX(100%)']
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'linear'
+                }}
+              />
+            )}
 
             {/* Placeholder Text (remove when adding actual logos) */}
             <span className="text-white/30 text-sm sm:text-base">
@@ -108,42 +128,60 @@ function SponsorSection({ title, height, count, color }: SponsorSectionProps) {
 }
 
 export function Sponsors() {
+  // State to control when animations should be rendered
+  const [isVisible, setIsVisible] = useState(false);
+  
+  // Delay rendering animations until after component mount
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+  
   return (
-    <div className="w-full max-w-7xl mx-auto py-8 sm:py-12">
-      <SponsorSection 
-        title="TITLE SPONSOR"
-        height="h-40 sm:h-48"
-        count={1}
-        color="#B4FF00"
-      />
-      
-      <SponsorSection 
-        title="PLATINUM SPONSORS"
-        height="h-28 sm:h-32"
-        count={3}
-        color="#5271FF"
-      />
-      
-      <SponsorSection 
-        title="DIAMOND SPONSORS"
-        height="h-28 sm:h-32"
-        count={3}
-        color="#40F8FF"
-      />
-      
-      <SponsorSection 
-        title="GOLD SPONSORS"
-        height="h-24 sm:h-28"
-        count={3}
-        color="#FFD700"
-      />
-      
-      <SponsorSection 
-        title="PARTNERS"
-        height="h-24 sm:h-28"
-        count={3}
-        color="#9D71FD"
-      />
+    <div 
+      className="w-full max-w-7xl mx-auto py-8 sm:py-12"
+      style={{ 
+        willChange: 'contents',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {isVisible && (
+        <>
+          <SponsorSection 
+            title="TITLE SPONSOR"
+            height="h-40 sm:h-48"
+            count={1}
+            color="#B4FF00"
+          />
+          
+          <SponsorSection 
+            title="PLATINUM SPONSORS"
+            height="h-28 sm:h-32"
+            count={3}
+            color="#5271FF"
+          />
+          
+          <SponsorSection 
+            title="DIAMOND SPONSORS"
+            height="h-28 sm:h-32"
+            count={3}
+            color="#40F8FF"
+          />
+          
+          <SponsorSection 
+            title="GOLD SPONSORS"
+            height="h-24 sm:h-28"
+            count={3}
+            color="#FFD700"
+          />
+          
+          <SponsorSection 
+            title="PARTNERS"
+            height="h-24 sm:h-28"
+            count={3}
+            color="#9D71FD"
+          />
+        </>
+      )}
     </div>
   );
 } 

@@ -8,6 +8,7 @@ const menuItems = [
   { label: 'HOME', href: '#' },
   { label: 'ABOUT', href: '#about' },
   { label: 'TIMELINE', href: '#timeline' },
+  { label: 'TRACKS', href: '#tracks' },
   { label: 'SPONSORS', href: '#sponsors' },
   { label: 'FAQ', href: '#faq' },
 ];

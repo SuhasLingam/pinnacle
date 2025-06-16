@@ -81,26 +81,22 @@ const faqData = [
     question: "Is accommodation and food provided?",
     answer: "Yes! Both accommodation and food will be provided for all participants throughout the event. We'll ensure you have a comfortable resting area as well. 🏠🍽️"
   },
-  {
-    question: "Once I am accepted, what do I need to bring?",
-    answer: "Please bring your college ID card, laptop, phone, charger, and any other personal items you might need. 💻"
-  },
+  // {
+  //   question: "Once I am accepted, what do I need to bring?",
+  //   answer: "Please bring your college ID card, laptop, phone, charger, and any other personal items you might need. 💻"
+  // },
   {
     question: "Will there be mentorship available?",
     answer: "Yes! We'll have experienced mentors from the industry to guide you throughout the event. They'll help you with technical challenges and provide valuable insights. 👨‍🏫"
   },
-  {
-    question: "What kind of projects can we build?",
-    answer: "You can work on any tech project that interests you! Whether it's web development, mobile apps, AI/ML, blockchain, or any other innovative solution. We encourage creativity and original ideas. 💡"
-  },
-  {
-    question: "Will there be prizes?",
-    answer: "Yes! We have exciting prizes for the winning teams. Details about the prize pool and categories will be announced during the event. 🏆"
-  },
-  {
-    question: "How can I stay updated?",
-    answer: "Follow our social media channels and regularly check your email for announcements. We'll keep you posted about all important updates and schedule changes. 📱"
-  },
+  // {
+  //   question: "What kind of projects can we build?",
+  //   answer: "You can work on projects across various AI tracks including Generative AI & Creativity, AI for Edtech, AI for Productivity & Business Tools, AI for Medtech, AI in Fintech, AI for Content Moderation, AI in Language & Communication, AI in Cybersecurity, AI for Code & Developer Tools, AI in Customer Experience, AI in Agritech, and AI in Healthcare. Check out our Tracks section for more details! 💡"
+  // },
+  // {
+  //   question: "How can I stay updated?",
+  //   answer: "Follow our social media channels and regularly check your email for announcements. We'll keep you posted about all important updates and schedule changes. 📱"
+  // },
   {
     question: "Is travel reimbursement provided?",
     answer: "No, travel reimbursement is not provided. Participants will need to arrange and cover their own travel expenses. 🚗"

@@ -4,6 +4,7 @@ import { About } from '@/components/About';
 import { Timeline } from '@/components/Timeline';
 import { Sponsors } from '@/components/Sponsors';
 import { FAQ } from '@/components/FAQ';
+import { Tracks } from '@/components/Tracks'
 import { motion } from 'framer-motion';
 import { GradientText, FeatureCard, StatCard } from '@/components/FeatureCards';
 import { Lightbulb, Users, BookOpen, Presentation } from 'lucide-react';
@@ -201,6 +202,23 @@ export default function Home() {
           <GradientText spacing={true}>EVENT TIMELINE</GradientText>
         </h2>
         <Timeline />
+      </motion.section>
+
+      {/* Tracks Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="tracks" 
+        className="py-16 sm:py-20 px-4"
+      >
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center">
+          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
+            TRACKS
+          </span>
+        </h2>
+        <Tracks />
       </motion.section>
 
       {/* Sponsors Section */}

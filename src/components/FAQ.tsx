@@ -69,18 +69,18 @@ const faqData = [
     question: "What's the team size?",
     answer: "Team size can be 1-4 members. You can participate either as a team or individually. 👥"
   },
-  {
-    question: "What if I don't have a team?",
-    answer: "No worries! You can participate solo or we can help you find team members during the event. We'll have team formation activities to help you connect with other participants. 🤝"
-  },
+  // {
+  //   question: "What if I don't have a team?",
+  //   answer: "No worries! You can participate solo or we can help you find team members during the event. We'll have team formation activities to help you connect with other participants. 🤝"
+  // },
   {
     question: "Is this an offline event?",
     answer: "Yes, this is an offline event only. Virtual participation is not possible. The event will be held in Coimbatore. 🏢"
   },
-  {
-    question: "Is accommodation and food provided?",
-    answer: "Yes! Both accommodation and food will be provided for all participants throughout the event. We'll ensure you have a comfortable resting area as well. 🏠🍽️"
-  },
+  // {
+  //   question: "Is accommodation and food provided?",
+  //   answer: "Yes! Both accommodation and food will be provided for all participants throughout the event. We'll ensure you have a comfortable resting area as well. 🏠🍽️"
+  // },
   // {
   //   question: "Once I am accepted, what do I need to bring?",
   //   answer: "Please bring your college ID card, laptop, phone, charger, and any other personal items you might need. 💻"

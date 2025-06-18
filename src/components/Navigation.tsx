@@ -7,8 +7,8 @@ import Image from 'next/image';
 const menuItems = [
   { label: 'HOME', href: '#' },
   { label: 'ABOUT', href: '#about' },
-  { label: 'TIMELINE', href: '#timeline' },
   { label: 'TRACKS', href: '#tracks' },
+  { label: 'TIMELINE', href: '#timeline' },
   { label: 'SPONSORS', href: '#sponsors' },
   { label: 'FAQ', href: '#faq' },
 ];

@@ -189,6 +189,23 @@ export default function Home() {
         </div>
       </motion.section>
 
+            {/* Tracks Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="tracks" 
+        className="py-16 sm:py-20 px-4"
+      >+
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center">
+          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
+            TRACKS
+          </span>
+        </h2>
+        <Tracks />
+      </motion.section>
+
       {/* Timeline Section */}
       <motion.section 
         initial={{ opacity: 0 }}
@@ -204,22 +221,7 @@ export default function Home() {
         <Timeline />
       </motion.section>
 
-      {/* Tracks Section */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        id="tracks" 
-        className="py-16 sm:py-20 px-4"
-      >
-        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center">
-          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
-            TRACKS
-          </span>
-        </h2>
-        <Tracks />
-      </motion.section>
+
 
       {/* Sponsors Section */}
       <motion.section 
@@ -314,18 +316,30 @@ export default function Home() {
               <ul className="space-y-3">
                 <li>
                   <a href="mailto:info@pinnacle.com" className="text-white/70 hover:text-white text-sm transition-colors">
-                    info@pinnacle.com
+                    incitecrew@gmail.com
                   </a>
                 </li>
+                
                 <li>
-                  <a href="tel:+1234567890" className="text-white/70 hover:text-white text-sm transition-colors">
-                    +123 456 7890
+                  <a href="tel:+918807382362" className="text-white/70 hover:text-white text-sm transition-colors">
+                    +918807382362
                   </a>
-                </li>
-                <li className="text-white/70 text-sm">
+                 </li> 
+                 <li>
+                   <a href="tel:+917305602612" className="text-white/70 hover:text-white text-sm transition-colors">
+                    +917305602612
+                  </a>
+                 </li>
+                  
+                  <li>
+                    <a href="tel:+918331830400" className="text-white/70 hover:text-white text-sm transition-colors">
+                    +918331830400
+                  </a>
+                  </li>
+                {/* <li className="text-white/70 text-sm">
                   123 Innovation Street<br />
                   Tech City, TC 12345
-                </li>
+                </li> */}
               </ul>
             </div>
 
@@ -353,7 +367,7 @@ export default function Home() {
           <div className="mt-12 pt-8 border-t border-white/10">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-white/50 text-sm">
-                © 2024 Pinnacle. All rights reserved.
+                © 2025 Pinnacle. All rights reserved.
               </p>
               <div className="flex space-x-6">
                 <a href="#" className="text-white/50 hover:text-white text-sm transition-colors">Privacy Policy</a>

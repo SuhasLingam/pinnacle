@@ -103,7 +103,7 @@ const faqData = [
   },
   {
     question: "Have more questions?",
-    answer: "Feel free to reach out to us at suhaslingam400@gmail.com for any other queries! 📧"
+    answer: "Feel free to reach out to us at incitecrew@gmail.com for any other queries! 📧"
   }
 ];
 

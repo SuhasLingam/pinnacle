@@ -13,7 +13,7 @@ interface GradientTextProps {
 export function GradientText({ children, className = "", spacing = false }: GradientTextProps) {
   return (
     <span
-      className={`bg-gradient-to-r from-[#8BE8FF] via-[#9D71FD] to-[#7C4DFF] text-transparent bg-clip-text font-mono-rubik
+      className={`animated-gradient text-transparent bg-clip-text font-mono-rubik
       ${spacing ? 'tracking-[0.3em] sm:tracking-[0.5em]' : ''} ${className}`}
       style={{
         textShadow: '0 0 20px rgba(139, 232, 255, 0.3)'

@@ -6,8 +6,9 @@ import { Sponsors } from '@/components/Sponsors';
 import { FAQ } from '@/components/FAQ';
 import { Tracks } from '@/components/Tracks'
 import { motion } from 'framer-motion';
-import { GradientText, FeatureCard, StatCard } from '@/components/FeatureCards';
+import { GradientText, FeatureCard } from '@/components/FeatureCards';
 import { Lightbulb, Users, BookOpen, Presentation } from 'lucide-react';
+import { Partners } from '@/components/Partners';
 
 const letterAnimation = {
   initial: { y: 40, opacity: 0 },
@@ -44,7 +45,7 @@ export default function Home() {
                   variants={letterAnimation}
                   initial="initial"
                   animate="animate"
-                  className="text-[#B4FF00] text-[clamp(2.5rem,8vw,8rem)] font-mono-rubik"
+                  className="text-[#B4FF00]  text-[clamp(2.5rem,8vw,8rem)] font-mono-rubik"
                   style={{
                     textShadow: '0 0 20px rgba(180, 255, 0, 0.3)'
                   }}
@@ -123,7 +124,7 @@ export default function Home() {
         className="py-16 sm:py-20 px-4"
       >
         <h2 className="text-3xl sm:text-5xl  font-mono-rubik mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
-          <span className="bg-gradient-to-r  from-[#B4FF00] to-[#5271FF] text-transparent bg-clip-text">
+          <span className="animated-gradient">
             ABOUT
           </span>
         </h2>
@@ -136,10 +137,10 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="py-16 sm:py-20 px-4"
+        className="py-10 sm:py-20 px-4"
       >
         <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
-          <GradientText spacing={true}>WHAT YOU GET</GradientText>
+          <GradientText  spacing={true}>WHAT YOU GET</GradientText>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
           <FeatureCard
@@ -170,7 +171,7 @@ export default function Home() {
       </motion.section>
 
       {/* WITH Section */}
-      <motion.section 
+      {/* <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -185,10 +186,10 @@ export default function Home() {
           <StatCard number="1L+" label="PRIZE POOL" />
           <StatCard number="20+" label="MENTORS" />
         </div>
-      </motion.section>
+      </motion.section> */}
 
 
-            {/* Sponsors Section */}
+      {/* Sponsors Section */}
       <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -197,12 +198,28 @@ export default function Home() {
         id="sponsors" 
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
-          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-2 sm:mb-3">
+          <span className="animated-gradient bg-clip-text text-transparent ">
             SPONSORS
           </span>
         </h2>
         <Sponsors />
+      </motion.section>
+
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="sponsors" 
+        className="py-10 sm:py-14 px-4"
+      >
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-2 sm:mb-3">
+          <span className="animated-gradient bg-clip-text text-transparent ">
+            PARTNERS
+          </span>
+        </h2>
+        <Partners />
       </motion.section>
 
             {/* Tracks Section */}
@@ -212,10 +229,10 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         id="tracks" 
-        className="py-16 sm:py-20 px-4"
-      >+
+        className="py-10 sm:py-16 px-4"
+      >
         <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center">
-          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
+          <span className="bg-clip-text text-transparent animated-gradient">
             TRACKS
           </span>
         </h2>
@@ -229,7 +246,7 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         id="timeline" 
-        className="py-16 sm:py-20 px-4"
+        className="py-10 sm:py-16 px-4"
       >
         <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
           <GradientText spacing={true}>EVENT TIMELINE</GradientText>

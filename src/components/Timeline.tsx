@@ -10,44 +10,49 @@ interface TimelineEvent {
 
 const events: TimelineEvent[] = [
   {
-    date: "March 1",
-    title: "Registration Opens",
-    description: "Begin your journey by registering for the hackathon"
+    date: "August 20",
+    title: "Registration Open",
+    description: "Kick off your journey by registering for the hackathon."
   },
   {
-    date: "March 15",
-    title: "Team Formation",
-    description: "Form your team or get matched with other participants"
+    date: "September 10",
+    title: "Registration Close",
+    description: "Last day to register and secure your spot."
   },
   {
-    date: "March 20",
-    title: "Opening Ceremony",
-    description: "Join us for the grand opening and problem statement reveal"
+    date: "Sept 20, 8am",
+    title: "Check In",
+    description: "Arrive at the venue and complete your check-in process."
   },
   {
-    date: "March 21",
-    title: "Hacking Begins",
-    description: "Start working on your innovative solutions"
+    date: "Sept 20, 10-12am",
+    title: "Inauguration & Speaker Session",
+    description: "Join the opening ceremony and get inspired by our speakers."
   },
   {
-    date: "March 22",
-    title: "Mentorship Sessions",
-    description: "Get guidance from industry experts"
+    date: "Sept 20, 12pm",
+    title: "Hack Begins",
+    description: "Start building your innovative solutions!"
   },
   {
-    date: "March 23",
-    title: "Project Submission",
-    description: "Submit your projects for evaluation"
+    date: "Sept 20, 6pm",
+    title: "1st Pitch",
+    description: "Present your initial ideas and progress to the mentors."
   },
   {
-    date: "March 24",
-    title: "Presentations",
-    description: "Present your solutions to the judges"
+    date: "Sept 21, 12pm",
+    title: "Hack Ends",
+    description: "Coding ends. Prepare your final presentations."
   },
   {
-    date: "March 25",
-    title: "Closing Ceremony",
-    description: "Winners announcement and prize distribution"
+    date: "Sept 21, 2pm",
+    title: "Final Pitch",
+    description: "Showcase your finished projects to the judges."
+  },
+  {
+    date: "Sept 21, 4-5pm",
+    title: "Closing Ceremony & Results Announcement",
+    description: "Celebrate the winners and wrap up the event."
   }
 ];
 

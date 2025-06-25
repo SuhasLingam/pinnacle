@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,9 +33,10 @@ interface SponsorSectionProps {
   height: string
   count: number
   color: string
+  logos?: string[] // Array of logo image paths
 }
 
-function SponsorSection({ title, height, count, color }: SponsorSectionProps) {
+function SponsorSection({ title, height, count, color, logos = [] }: SponsorSectionProps) {
   const prefersReducedMotion = useReducedMotion();
   
   return (
@@ -116,10 +118,21 @@ function SponsorSection({ title, height, count, color }: SponsorSectionProps) {
               />
             )}
 
-            {/* Placeholder Text (remove when adding actual logos) */}
-            <span className="text-white/30 text-sm sm:text-base">
-              Logo Placeholder
-            </span>
+            {/* Sponsor Logo or Placeholder */}
+            {logos[i] ? (
+              <Image
+                src={logos[i]}
+                alt={title + ' logo'}
+                width={120}
+                height={60}
+                className="object-contain max-h-full max-w-full"
+                style={{ filter: 'drop-shadow(0 0 8px ' + color + '60)' }}
+              />
+            ) : (
+              <span className="text-white/30 text-sm sm:text-base">
+                Logo Placeholder
+              </span>
+            )}
           </motion.div>
         ))}
       </div>
@@ -148,37 +161,42 @@ export function Sponsors() {
         <>
           <SponsorSection 
             title="TITLE SPONSOR"
-            height="h-40 sm:h-48"
+            height="h-40 sm:h-56"
             count={1}
             color="#B4FF00"
+            logos={["/LogoMain.svg"]}
           />
           
           <SponsorSection 
             title="PLATINUM SPONSORS"
-            height="h-28 sm:h-32"
+            height="h-28 sm:h-44"
             count={3}
             color="#5271FF"
+            logos={["/LogoMain.svg", "/LogoMain.svg", "/LogoMain.svg"]}
           />
           
           <SponsorSection 
             title="DIAMOND SPONSORS"
-            height="h-28 sm:h-32"
+            height="h-28 sm:h-36"
             count={3}
             color="#40F8FF"
+            logos={["/LogoMain.svg", "/LogoMain.svg", "/LogoMain.svg"]}
           />
           
           <SponsorSection 
             title="GOLD SPONSORS"
-            height="h-24 sm:h-28"
+            height="h-24 sm:h-30"
             count={3}
             color="#FFD700"
+            logos={["/LogoMain.svg", "/LogoMain.svg", "/LogoMain.svg"]}
           />
           
           <SponsorSection 
             title="PARTNERS"
-            height="h-24 sm:h-28"
+            height="h-40 sm:h-44"
             count={3}
             color="#9D71FD"
+            logos={["/LogoMain.svg", "/LogoMain.svg", "/LogoMain.svg"]}
           />
         </>
       )}

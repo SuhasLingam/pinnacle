@@ -189,6 +189,24 @@ export default function Home() {
         </div>
       </motion.section>
 
+
+            {/* Sponsors Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="sponsors" 
+        className="py-16 sm:py-20 px-4"
+      >
+        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
+          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
+            SPONSORS
+          </span>
+        </h2>
+        <Sponsors />
+      </motion.section>
+
             {/* Tracks Section */}
       <motion.section 
         initial={{ opacity: 0 }}
@@ -223,22 +241,7 @@ export default function Home() {
 
 
 
-      {/* Sponsors Section */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        id="sponsors" 
-        className="py-16 sm:py-20 px-4"
-      >
-        <h2 className="text-4xl sm:text-5xl font-mono-rubik text-center mb-12 sm:mb-16">
-          <span className="bg-gradient-to-r bg-clip-text text-transparent from-[#B4FF00] to-[#5271FF]">
-            SPONSORS
-          </span>
-        </h2>
-        <Sponsors />
-      </motion.section>
+
 
       {/* FAQ Section */}
       <motion.section 

@@ -122,12 +122,10 @@ export default function Home() {
         id="about" 
         className="py-16 sm:py-20 px-4"
       >
-        <h2 className="text-3xl sm:text-4xl  font-mono-rubik mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
-          <span className="text-[#B4FF00]">A</span>
-          <span className="text-[#B4FF00]">B</span>
-          <span className="text-[#5271FF]">O</span>
-          <span className="text-[#5271FF]">U</span>
-          <span className="text-[#5271FF]">T</span>
+        <h2 className="text-3xl sm:text-5xl  font-mono-rubik mb-10 sm:mb-12 text-center tracking-[0.3em] flex justify-center gap-2 sm:gap-4">
+          <span className="bg-gradient-to-r  from-[#B4FF00] to-[#5271FF] text-transparent bg-clip-text">
+            ABOUT
+          </span>
         </h2>
         <About />
       </motion.section>

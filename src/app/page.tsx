@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { GradientText, FeatureCard } from '@/components/FeatureCards';
 import { Lightbulb, Users, BookOpen, Presentation } from 'lucide-react';
 import { Partners } from '@/components/Partners';
+import { CountdownToRegistration } from '@/components/CountdownToRegistration';
 
 const letterAnimation = {
   initial: { y: 40, opacity: 0 },
@@ -98,19 +99,8 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Apply Button */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.4, duration: 0.8 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block"
-          >
-            <button className="bg-white text-black px-8 sm:px-12 py-3 sm:py-4 rounded-full hover:bg-gray-50 transition-all text-xs sm:text-sm font-mono-rubik tracking-[0.2em] shadow-lg hover:shadow-xl">
-              APPLY NOW
-            </button>
-          </motion.div>
+          {/* Registration Countdown Timeline */}
+          <CountdownToRegistration />
         </motion.div>
       </section>
 

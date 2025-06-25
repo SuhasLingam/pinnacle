@@ -219,7 +219,7 @@ export function Partners() {
       {isVisible && (
         <>         
           <SponsorSection 
-            height="h-40 sm:h-60"
+            height="h-44 sm:h-60"
             count={2}
             color="#9D71FD"
             logos={["/LogoMain.svg", "/LogoMain.svg"]}
@@ -227,7 +227,7 @@ export function Partners() {
           />
 
           <SponsorSection 
-            height="h-28 sm:h-42"
+            height="h-32 sm:h-44"
             count={5}
             color="#40F8FF"
             logos={["/LogoMain.svg", "/LogoMain.svg", "/LogoMain.svg", "/LogoMain.svg", "/LogoMain.svg"]}

@@ -378,8 +378,8 @@ export default function Home() {
                 © 2025 Pinnacle. All rights reserved.
               </p>
               <div className="flex space-x-6">
-                <a href="#" className="text-white/50 hover:text-white text-sm transition-colors">Privacy Policy</a>
-                <a href="#" className="text-white/50 hover:text-white text-sm transition-colors">Terms of Service</a>
+                <a href="/privacy-policy" className="text-white/50 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                <a href="/terms" className="text-white/50 hover:text-white text-sm transition-colors">Terms of Service</a>
               </div>
             </div>
           </div>

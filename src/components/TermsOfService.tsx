@@ -1,9 +1,19 @@
+"use client"
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export function TermsOfService() {
+  const router = useRouter();
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 text-white/90">
-      <h1 className="text-3xl sm:text-4xl font-bold mb-2 animated-gradient text-transparent bg-clip-text">Terms of Service</h1>
+      <button
+        onClick={() => router.back()}
+        className="mb-6 px-4 py-2 rounded-full bg-[#23243a] hover:bg-[#181A20] text-white/80 font-mono-rubik text-xs shadow transition-all"
+      >
+        ← Back
+      </button>
+      <h1 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-to-r from-[#B4FF00] via-[#5271FF] to-[#7C4DFF] text-transparent bg-clip-text">Terms of Service</h1>
       <p className="text-xs text-white/60 mb-6">Last updated: June 26, 2025</p>
       <p className="mb-6">
         By accessing or using the <span className="font-bold">Pinnacle Hacks</span> website (<a href="https://www.pinnaclehacks.in" className="underline text-[#B4FF00] hover:text-[#5271FF]">www.pinnaclehacks.in</a>), you (“User”, “you”, or “your”) agree to be bound by these Terms of Service (“Terms”). If you do not agree to these Terms, please do not use this website.

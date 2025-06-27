@@ -1,8 +1,18 @@
+"use client"
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export function PrivacyPolicy() {
+  const router = useRouter();
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 text-white/90">
+      <button
+        onClick={() => router.back()}
+        className="mb-6 px-4 py-2 rounded-full bg-[#23243a] hover:bg-[#181A20] text-white/80 font-mono-rubik text-xs shadow transition-all"
+      >
+        ← Back
+      </button>
       <h1 className="text-3xl sm:text-4xl font-bold mb-2 animated-gradient text-transparent bg-clip-text">Privacy Policy</h1>
       <p className="text-xs text-white/60 mb-6">Last updated: June 26, 2025</p>
       <p className="mb-6">

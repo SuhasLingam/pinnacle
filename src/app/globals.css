@@ -113,17 +113,17 @@ html {
 }
 
 .animated-gradient {
-  background: linear-gradient(90deg, #8BE8FF, #9D71FD, #7C4DFF, #8BE8FF, #9D71FD, #7C4DFF);
-  background-size: 300% 100%;
+  background: linear-gradient(90deg, #8BE8FF, #9D71FD, #7C4DFF, #8BE8FF, #9D71FD, #7C4DFF, #8BE8FF);
+  background-size: 200% 100%;
   background-position: 0% 50%;
-  animation: gradient-move-left 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: gradient-move-smooth 6s linear infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
 }
 
-@keyframes gradient-move-left {
+@keyframes gradient-move-smooth {
   0% {
     background-position: 100% 50%;
   }

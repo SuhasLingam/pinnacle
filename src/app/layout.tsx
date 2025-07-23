@@ -1,22 +1,22 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Space_Grotesk } from 'next/font/google'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import "./globals.css";
+import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: 'TIC - PINNACLE',
-  description: 'The Society Core - PINNACLE 1ST EDITION',
-}
+  title: "TIC - PINNACLE",
+  description: "PINNACLE 1ST EDITION",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -25,5 +25,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }

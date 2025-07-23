@@ -433,6 +433,7 @@ export function Partners() {
                 src: "/partners/sketch-design.png",
                 label: "Design Partner",
                 className: "md:w-[200px] w-[120px] h-[85px] md:h-[120px]",
+                url: "https://www.instagram.com/srmsketch?igsh=MTg0d3B5cGx6bnc3eQ==",
               },
               // { src: "/partners/tech-hub.png", label: "Tech Partner" },
             ]}

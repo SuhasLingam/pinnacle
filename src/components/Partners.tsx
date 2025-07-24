@@ -33,6 +33,7 @@ interface SponsorLogo {
   label: string;
   className?: string; // Optional custom class for size
   url?: string; // Optional company link
+  shadowClass?: string; // Optional custom shadow class
 }
 
 interface SponsorSectionProps {
@@ -114,7 +115,7 @@ function SponsorSection({
                       height={logo.className ? 90 : 60}
                       className={`object-contain max-h-full max-w-full ${
                         logo.className || ""
-                      }`}
+                      } ${logo.shadowClass || ""}`}
                     />
                   </div>
                   <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -161,7 +162,7 @@ function SponsorSection({
                       height={logo.className ? 90 : 60}
                       className={`object-contain max-h-full max-w-full ${
                         logo.className || ""
-                      }`}
+                      } ${logo.shadowClass || ""}`}
                     />
                   </div>
                   <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -268,7 +269,7 @@ function SponsorSection({
                     height={logos[i].className ? 90 : 60}
                     className={`object-contain max-h-full max-w-full ${
                       logos[i].className || ""
-                    }`}
+                    } ${logos[i].shadowClass || ""}`}
                   />
                 </div>
                 <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -343,7 +344,7 @@ function SponsorSection({
                         height={logos[i].className ? 90 : 60}
                         className={`object-contain max-h-full max-w-full ${
                           logos[i].className || ""
-                        }`}
+                        } ${logos[i].shadowClass || ""}`}
                       />
                     </div>
                     <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -394,6 +395,7 @@ export function Partners() {
                 label: "Associate Partner",
                 className: "md:w-[300px] w-[250px] h-[120px]",
                 url: "https://growbinar.com",
+                // shadowClass: "drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]",
               },
               {
                 src: "/partners/NIT-Logo.png",
@@ -414,25 +416,29 @@ export function Partners() {
                 src: "/partners/media.png",
                 label: "Media Partner",
                 url: "https://www.instagram.com/nc.fotog?igsh=NzFlcDJzd2dncWpz",
-                className: "md:w-[200px] w-[120px] h-[70px] md:h-[110px]",
+                // Responsive: width and height adjust for mobile, tablet, desktop
+                className:
+                  "w-[90px] h-[50px] sm:w-[120px] sm:h-[70px] md:w-[180px] md:h-[110px] object-contain",
               },
               {
                 src: "/partners/Music.jpg",
                 label: "Music Partner",
                 url: "https://www.instagram.com/lighthouse.eventsss?igsh=N3dkZnFocnFyaDN3",
-                className: "md:w-[200px] w-[120px] h-[75px] md:h-[120px]",
+                className:
+                  "w-[90px] h-[55px] sm:w-[120px] sm:h-[75px] md:w-[180px] md:h-[120px] object-contain",
               },
               {
                 src: "/partners/nutz-dark.svg",
                 label: "Innovation Partner",
                 url: "https://nutz.in/",
                 className:
-                  "md:w-[200px] w-[140px] h-[70px] md:h-[110px] invert",
+                  "w-[100px] h-[50px] sm:w-[140px] sm:h-[70px] md:w-[180px] md:h-[110px] invert object-contain",
               },
               {
                 src: "/partners/sketch-design.png",
                 label: "Design Partner",
-                className: "md:w-[200px] w-[120px] h-[85px] md:h-[120px]",
+                className:
+                  "w-[90px] h-[60px] sm:w-[120px] sm:h-[85px] md:w-[180px] md:h-[120px] object-contain",
                 url: "https://www.instagram.com/srmsketch?igsh=MTg0d3B5cGx6bnc3eQ==",
               },
               // { src: "/partners/tech-hub.png", label: "Tech Partner" },

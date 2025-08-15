@@ -113,9 +113,8 @@ function SponsorSection({
                       alt={logo.label || i + " logo"}
                       width={logo.className ? 180 : 120}
                       height={logo.className ? 90 : 60}
-                      className={`object-contain max-h-full max-w-full ${
-                        logo.className || ""
-                      } ${logo.shadowClass || ""}`}
+                      className={`object-contain max-h-full max-w-full ${logo.className || ""
+                        } ${logo.shadowClass || ""}`}
                     />
                   </div>
                   <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -160,9 +159,8 @@ function SponsorSection({
                       alt={logo.label || i + " logo"}
                       width={logo.className ? 180 : 120}
                       height={logo.className ? 90 : 60}
-                      className={`object-contain max-h-full max-w-full ${
-                        logo.className || ""
-                      } ${logo.shadowClass || ""}`}
+                      className={`object-contain max-h-full max-w-full ${logo.className || ""
+                        } ${logo.shadowClass || ""}`}
                     />
                   </div>
                   <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -192,13 +190,12 @@ function SponsorSection({
       }}
     >
       <div
-        className={`grid grid-cols-1 ${
-          count === 1
-            ? "max-w-2xl mx-auto"
-            : count === 2
+        className={`grid grid-cols-1 ${count === 1
+          ? "max-w-2xl mx-auto"
+          : count === 2
             ? "sm:grid-cols-2"
             : "sm:grid-cols-2 lg:grid-cols-3"
-        } gap-4 sm:gap-6 lg:gap-8`}
+          } gap-4 sm:gap-6 lg:gap-8`}
       >
         {Array(count)
           .fill(0)
@@ -214,9 +211,9 @@ function SponsorSection({
                   prefersReducedMotion
                     ? {}
                     : {
-                        scale: 1.02,
-                        boxShadow: `0 0 30px ${color}30`,
-                      }
+                      scale: 1.02,
+                      boxShadow: `0 0 30px ${color}30`,
+                    }
                 }
                 className={`
                 ${height} 
@@ -267,9 +264,8 @@ function SponsorSection({
                     alt={logos[i].label || i + " logo"}
                     width={logos[i].className ? 180 : 120}
                     height={logos[i].className ? 90 : 60}
-                    className={`object-contain max-h-full max-w-full ${
-                      logos[i].className || ""
-                    } ${logos[i].shadowClass || ""}`}
+                    className={`object-contain max-h-full max-w-full ${logos[i].className || ""
+                      } ${logos[i].shadowClass || ""}`}
                   />
                 </div>
                 <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -286,9 +282,9 @@ function SponsorSection({
                   prefersReducedMotion
                     ? {}
                     : {
-                        scale: 1.02,
-                        boxShadow: `0 0 30px ${color}30`,
-                      }
+                      scale: 1.02,
+                      boxShadow: `0 0 30px ${color}30`,
+                    }
                 }
                 className={`
                 ${height} 
@@ -342,9 +338,8 @@ function SponsorSection({
                         alt={logos[i].label || i + " logo"}
                         width={logos[i].className ? 180 : 120}
                         height={logos[i].className ? 90 : 60}
-                        className={`object-contain max-h-full max-w-full ${
-                          logos[i].className || ""
-                        } ${logos[i].shadowClass || ""}`}
+                        className={`object-contain max-h-full max-w-full ${logos[i].className || ""
+                          } ${logos[i].shadowClass || ""}`}
                       />
                     </div>
                     <div className="mt-auto w-full text-center pb-3 pt-2">
@@ -441,7 +436,13 @@ export function Partners() {
                   "w-[90px] h-[60px] sm:w-[120px] sm:h-[85px] md:w-[180px] md:h-[120px] object-contain",
                 url: "https://www.instagram.com/srmsketch?igsh=MTg0d3B5cGx6bnc3eQ==",
               },
-              // { src: "/partners/tech-hub.png", label: "Tech Partner" },
+              {
+                src: "/partners/eventeye.png",
+                label: "Outreach Partner",
+                className:
+                  "w-[90px] h-[60px] sm:w-[120px] sm:h-[85px] md:w-[180px] md:h-[120px] object-contain",
+                url: "https://www.eventeye.in/",
+              },
             ]}
             mode="carousel"
           />

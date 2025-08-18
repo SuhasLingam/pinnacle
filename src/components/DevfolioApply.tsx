@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function ApplyButton({ slug, theme = 'light', width = 312, height = 44 }: { slug: string, theme?: string, width?: number, height?: number }) {
+export default function ApplyButton({ slug, theme = 'light' }: { slug: string, theme?: string }) {
     useEffect(() => {
         const script = document.createElement('script');
         script.src = 'https://apply.devfolio.co/v2/sdk.js';
@@ -13,11 +13,12 @@ export default function ApplyButton({ slug, theme = 'light', width = 312, height
     }, []);
 
     return (
-        <div
-            className="apply-button"
-            data-hackathon-slug={slug}
-            data-button-theme={theme}
-            style={{ width: `${width}px`, height: `${height}px` }}
-        ></div>
+        <div className="flex justify-center items-center w-full">
+            <div
+                className="apply-button w-80 h-14 sm:w-96 sm:h-16 md:w-[450px] md:h-[70px]"
+                data-hackathon-slug={slug}
+                data-button-theme={theme}
+            ></div>
+        </div>
     );
 }

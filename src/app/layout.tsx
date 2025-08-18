@@ -11,6 +11,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "TIC - PINNACLE",
   description: "PINNACLE 1ST EDITION",
+  icons: {
+    icon: "/LogoMain.svg",
+    shortcut: "/LogoMain.svg",
+    apple: "/LogoMain.svg",
+  },
 };
 
 export default function RootLayout({

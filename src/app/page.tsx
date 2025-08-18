@@ -113,7 +113,7 @@ export default function Home() {
 
           {/* Registration Countdown Timeline */}
           {/* <CountdownToRegistration /> */}
-          <ApplyButton slug="tic-pinnacle-hacks-2025" theme="dark" />
+          <ApplyButton slug="mumbaihacks25-round1" theme="dark" />
 
         </motion.div>
       </section>

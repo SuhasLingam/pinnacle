@@ -15,7 +15,7 @@ export default function ApplyButton({ slug, theme = 'light' }: { slug: string, t
     return (
         <div className="flex justify-center items-center w-full">
             <div
-                className="apply-button w-80 h-14 sm:w-96 sm:h-16 md:w-[450px] md:h-[70px]"
+                className="apply-button w-96 h-16 sm:w-[420px] sm:h-20 md:w-[500px] md:h-[80px]"
                 data-hackathon-slug={slug}
                 data-button-theme={theme}
             ></div>

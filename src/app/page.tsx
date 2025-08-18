@@ -4,17 +4,17 @@ import { Navigation } from "@/components/Navigation";
 import { About } from "@/components/About";
 import { Timeline } from "@/components/Timeline";
 import { Sponsors } from "@/components/Sponsors";
-import Speakers from "@/components/Speakers";
-import Mentors from "@/components/Mentors";
-import Judges from "@/components/Judges";
-import { speakers, mentors, judges } from "@/data/people";
+// import Speakers from "@/components/Speakers";
+// import Mentors from "@/components/Mentors";
+// import Judges from "@/components/Judges";
+// import { speakers, mentors, judges } from "@/data/people";
 import { FAQ } from "@/components/FAQ";
 import { Tracks } from "@/components/Tracks";
 import { motion } from "framer-motion";
 import { GradientText, FeatureCard } from "@/components/FeatureCards";
 import { Lightbulb, Users, BookOpen, Presentation } from "lucide-react";
 import { Partners } from "@/components/Partners";
-import { CountdownToRegistration } from "@/components/CountdownToRegistration";
+// import { CountdownToRegistration } from "@/components/CountdownToRegistration";
 import { SponsorshipCTA } from "@/components/SponsorshipCTA";
 import DevfolioApply from "@/components/DevfolioApply";
 
@@ -233,7 +233,7 @@ export default function Home() {
       </motion.section>
 
       {/* Speakers / Mentors / Judges */}
-      <motion.section
+      {/* <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -246,7 +246,7 @@ export default function Home() {
           <Mentors people={mentors} />
           <Judges people={judges} />
         </div>
-      </motion.section>
+      </motion.section> */}
 
       <motion.section
         initial={{ opacity: 0 }}

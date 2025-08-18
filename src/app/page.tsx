@@ -15,7 +15,7 @@ import { Lightbulb, Users, BookOpen, Presentation } from "lucide-react";
 import { Partners } from "@/components/Partners";
 // import { CountdownToRegistration } from "@/components/CountdownToRegistration";
 import { SponsorshipCTA } from "@/components/SponsorshipCTA";
-import DevfolioApply from "@/components/DevfolioApply";
+import ApplyButton from "@/components/DevfolioApply";
 
 const letterAnimation = {
   initial: { y: 40, opacity: 0 },
@@ -113,7 +113,8 @@ export default function Home() {
 
           {/* Registration Countdown Timeline */}
           {/* <CountdownToRegistration /> */}
-          <DevfolioApply />
+          <ApplyButton slug="tic-pinnacle-hacks-2025" theme="dark" />
+
         </motion.div>
       </section>
 

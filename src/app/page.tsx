@@ -1,8 +1,13 @@
 "use client";
+import { useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { About } from "@/components/About";
 import { Timeline } from "@/components/Timeline";
 import { Sponsors } from "@/components/Sponsors";
+import Speakers from "@/components/Speakers";
+import Mentors from "@/components/Mentors";
+import Judges from "@/components/Judges";
+import { speakers, mentors, judges } from "@/data/people";
 import { FAQ } from "@/components/FAQ";
 import { Tracks } from "@/components/Tracks";
 import { motion } from "framer-motion";
@@ -11,6 +16,7 @@ import { Lightbulb, Users, BookOpen, Presentation } from "lucide-react";
 import { Partners } from "@/components/Partners";
 import { CountdownToRegistration } from "@/components/CountdownToRegistration";
 import { SponsorshipCTA } from "@/components/SponsorshipCTA";
+import DevfolioApply from "@/components/DevfolioApply";
 
 const letterAnimation = {
   initial: { y: 40, opacity: 0 },
@@ -26,6 +32,20 @@ const letterAnimation = {
 };
 
 export default function Home() {
+
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://apply.devfolio.co/v2/sdk.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, []);
+
+
   return (
     <main className="min-h-screen bg-transparent text-white overflow-hidden">
       <Navigation />
@@ -107,7 +127,8 @@ export default function Home() {
           </motion.div>
 
           {/* Registration Countdown Timeline */}
-          <CountdownToRegistration />
+          {/* <CountdownToRegistration /> */}
+          <DevfolioApply />
         </motion.div>
       </section>
 
@@ -209,6 +230,22 @@ export default function Home() {
           </span>
         </h2>
         <Sponsors />
+      </motion.section>
+
+      {/* Speakers / Mentors / Judges */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="people"
+        className="py-10 sm:py-16 px-4"
+      >
+        <div className="space-y-12 sm:space-y-16 max-w-7xl mx-auto">
+          <Speakers people={speakers} />
+          <Mentors people={mentors} />
+          <Judges people={judges} />
+        </div>
       </motion.section>
 
       <motion.section

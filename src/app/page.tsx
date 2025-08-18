@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { About } from "@/components/About";
 import { Timeline } from "@/components/Timeline";
@@ -32,20 +31,6 @@ const letterAnimation = {
 };
 
 export default function Home() {
-
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://apply.devfolio.co/v2/sdk.js';
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    }
-  }, []);
-
-
   return (
     <main className="min-h-screen bg-transparent text-white overflow-hidden">
       <Navigation />

@@ -73,4 +73,4 @@ export function TermsOfService() {
       <p>Website: <a href="http://www.pinnaclehacks.in" target="_blank" rel="noopener noreferrer" className="underline text-[#B4FF00] hover:text-[#5271FF]">www.pinnaclehacks.in</a></p>
     </div>
   );
-} 
+}

@@ -443,6 +443,20 @@ export function Partners() {
                   "w-[90px] h-[60px] sm:w-[120px] sm:h-[85px] md:w-[180px] md:h-[120px] object-contain",
                 url: "https://www.eventeye.in/",
               },
+              {
+                src: "/partners/wyntrix.png",
+                label: "Marketing Partner",
+                className:
+                  "w-[90px] h-[60px] sm:w-[120px] sm:h-[85px] md:w-[180px] md:h-[120px] object-contain",
+                url: "https://www.linkedin.com/company/wyntrix/",
+              },
+              {
+                src: "/partners/lineinttree.svg",
+                label: "Marketing Partner",
+                className:
+                  "w-[90px] h-[60px] sm:w-[120px] sm:h-[85px] md:w-[180px] md:h-[120px] object-contain",
+                url: "https://lenienttree.com/landing",
+              },
             ]}
             mode="carousel"
           />
